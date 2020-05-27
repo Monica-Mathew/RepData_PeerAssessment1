@@ -61,7 +61,7 @@ The median of total number of steps taken per day is 10765
 
 ```r
 steps_per_interval<-aggregate(steps~interval, data=activitydata, mean, na.rm=TRUE)
-plot(steps~interval, data=steps_per_interval, type="l")
+plot(steps~interval, data=steps_per_interval,main = "Average daily steps", type="l")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
@@ -101,7 +101,7 @@ Histogram of the total number of steps taken each day after missing values are i
 
 ```r
 StepsPerDay_imputed <- tapply(imputed_activity$steps, imputed_activity$date, sum)
-hist(StepsPerDay_imputed, xlab = "Number of Steps",col="green", main = "Histogram: Steps per Day (Imputed data)")
+hist(StepsPerDay_imputed, xlab = "Number of Steps",col="green", main = "Steps per Day (Imputed data)")
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-8-1.png)<!-- -->
@@ -128,7 +128,7 @@ weekdays <- c("Monday", "Tuesday", "Wednesday", "Thursday",
 imputed_activity$comp = as.factor(ifelse(is.element(weekdays(as.Date(imputed_activity$date)),weekdays), "Weekday", "Weekend"))
 steps_by_interval_i <- aggregate(steps ~ interval + comp, imputed_activity, mean)
 library(lattice)
-xyplot(steps_by_interval_i$steps ~ steps_by_interval_i$interval|steps_by_interval_i$comp, main="Avg Steps per Day by Interval",xlab="Interval", ylab="Steps",layout=c(1,2), type="l") 
+xyplot(steps_by_interval_i$steps ~ steps_by_interval_i$interval|steps_by_interval_i$comp, main="Average Steps per Day by Interval",xlab="Interval", ylab="Steps",layout=c(1,2), type="l") 
 ```
 
 ![](PA1_template_files/figure-html/unnamed-chunk-10-1.png)<!-- -->
